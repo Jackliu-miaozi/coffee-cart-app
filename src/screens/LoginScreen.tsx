@@ -69,8 +69,16 @@ export default function LoginScreen() {
     console.log('Calling skipAuth()...');
     skipAuth();
     console.log('skipAuth() called');
-    // skipAuth 会更新状态，触发 AppNavigator 重新渲染
-    // 状态更新后会自动导航到主应用，无需手动导航
+
+    // 为了确保导航正常工作，添加一个小延迟后尝试导航
+    setTimeout(() => {
+      if (navigation.canGoBack()) {
+        console.log('Can go back, calling goBack()');
+        navigation.goBack();
+      } else {
+        console.log('Cannot go back, state should handle navigation');
+      }
+    }, 100);
   };
 
   return (
