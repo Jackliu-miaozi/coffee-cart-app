@@ -14,12 +14,16 @@ src/
 │   │   ├── OrdersScreen.styles.ts
 │   │   ├── ProfileScreen.styles.ts
 │   │   ├── LoginScreen.styles.ts
+│   │   ├── HomeScreen.styles.ts
+│   │   ├── ShoppingCartScreen.styles.ts
 │   │   └── index.ts
 │   └── index.ts
 └── screens/
     ├── OrdersScreen.tsx (样式已分离)
     ├── ProfileScreen.tsx (样式已分离)
     ├── LoginScreen.tsx (样式已分离)
+    ├── HomeScreen.tsx (样式已分离)
+    ├── ShoppingCartScreen.tsx (样式已分离)
     └── ... (其他页面)
 ```
 
@@ -46,6 +50,8 @@ src/
 - **OrdersScreen.tsx**: 从 156 行减少到 127 行 (-18%)
 - **ProfileScreen.tsx**: 从 593 行减少到 272 行 (-54%)
 - **LoginScreen.tsx**: 从 353 行减少到 180 行 (-49%)
+- **HomeScreen.tsx**: 从 682 行减少到 367 行 (-46%)
+- **ShoppingCartScreen.tsx**: 从 541 行减少到 256 行 (-53%)
 
 #### 导入优化
 ```typescript
@@ -77,6 +83,8 @@ import { ordersScreenStyles as styles } from '../styles/screens';
 export { ordersScreenStyles } from './OrdersScreen.styles';
 export { profileScreenStyles } from './ProfileScreen.styles';
 export { loginScreenStyles } from './LoginScreen.styles';
+export { homeScreenStyles } from './HomeScreen.styles';
+export { shoppingCartScreenStyles } from './ShoppingCartScreen.styles';
 ```
 
 #### 类型安全
