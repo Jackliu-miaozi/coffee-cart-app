@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-  Image,
-  TextInput,
-  Alert,
-} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../types';
+import React, { useState } from 'react';
+import {
+  Alert,
+  Image,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { shoppingCart } from '../data/mockData';
-import { CartItem, Coupon } from '../types';
 import { shoppingCartScreenStyles as styles } from '../styles/screens';
+import { RootStackParamList } from '../types';
 
 type ShoppingCartScreenNavigationProp = StackNavigationProp<
   RootStackParamList,

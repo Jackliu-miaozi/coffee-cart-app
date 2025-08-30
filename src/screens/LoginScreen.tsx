@@ -66,11 +66,11 @@ export default function LoginScreen() {
 
   const handleSkipLogin = () => {
     // 跳过登录，直接进入应用
+    console.log('Calling skipAuth()...');
     skipAuth();
-    // 如果当前在导航栈中，则返回到上一级
-    if (navigation.canGoBack()) {
-      navigation.goBack();
-    }
+    console.log('skipAuth() called');
+    // skipAuth 会更新状态，触发 AppNavigator 重新渲染
+    // 状态更新后会自动导航到主应用，无需手动导航
   };
 
   return (

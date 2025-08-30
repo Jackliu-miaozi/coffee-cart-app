@@ -1,13 +1,13 @@
-import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../types';
+import React from 'react';
+import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { ActionCard, AppHeader } from '../components';
 import { userProfile } from '../data/mockData';
 import { useAuthStore } from '../stores/authStore';
-import { AppHeader, ActionCard } from '../components';
 import { profileScreenStyles as styles } from '../styles/screens';
+import { RootStackParamList } from '../types';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
