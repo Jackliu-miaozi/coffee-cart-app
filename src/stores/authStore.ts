@@ -1,7 +1,7 @@
-import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { User, AuthState } from '../types';
+import { create } from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
+import { AuthState, User } from '../types';
 
 export const useAuthStore = create<AuthState>()(
   persist(
@@ -58,18 +58,29 @@ export const useAuthStore = create<AuthState>()(
           isGuest: currentState.isGuest,
         });
 
+        // 强制清除状态，然后设置新状态
         set({
           user: null,
-          isAuthenticated: true, // 允许进入主导航
-          isGuest: true, // 标记为游客模式
+          isAuthenticated: false,
+          isGuest: false,
           isLoading: false,
         });
 
-        const newState = get();
-        console.log('New state after skipAuth:', {
-          isAuthenticated: newState.isAuthenticated,
-          isGuest: newState.isGuest,
-        });
+        // 立即设置游客状态
+        setTimeout(() => {
+          set({
+            user: null,
+            isAuthenticated: true, // 允许进入主导航
+            isGuest: true, // 标记为游客模式
+            isLoading: false,
+          });
+
+          const newState = get();
+          console.log('New state after skipAuth:', {
+            isAuthenticated: newState.isAuthenticated,
+            isGuest: newState.isGuest,
+          });
+        }, 50);
       },
     }),
     {
