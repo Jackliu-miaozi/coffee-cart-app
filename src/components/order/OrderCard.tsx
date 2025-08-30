@@ -37,19 +37,26 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onPress }) => {
   };
 
   return (
-    <TouchableOpacity style={styles.orderCard} onPress={onPress} activeOpacity={0.8}>
+    <TouchableOpacity
+      style={styles.orderCard}
+      onPress={onPress}
+      activeOpacity={0.8}
+    >
       <View style={styles.orderBackground}>
         <View style={styles.orderHeader}>
           <View style={styles.cartInfoSection}>
             <View style={styles.cartLogoContainer}>
               <Image source={{ uri: order.cartLogo }} style={styles.cartLogo} />
               <View
-                style={[styles.statusIndicator, { backgroundColor: getStatusColor(order.status) }]}
+                style={[
+                  styles.statusIndicator,
+                  { backgroundColor: getStatusColor(order.status) },
+                ]}
               >
-                <Ionicons 
-                  name={getOrderIcon(order.status) as any} 
-                  size={12} 
-                  color="white" 
+                <Ionicons
+                  name={getOrderIcon(order.status) as any}
+                  size={12}
+                  color="white"
                 />
               </View>
             </View>
@@ -61,10 +68,13 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onPress }) => {
               </View>
             </View>
           </View>
-          
+
           <View style={styles.statusSection}>
             <View
-              style={[styles.statusBadge, { backgroundColor: getStatusColor(order.status) }]}
+              style={[
+                styles.statusBadge,
+                { backgroundColor: getStatusColor(order.status) },
+              ]}
             >
               <Text style={styles.statusText}>{order.statusText}</Text>
             </View>
@@ -81,13 +91,17 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onPress }) => {
                   {orderItem.name} x{orderItem.quantity}
                 </Text>
                 {orderItem.options && (
-                  <Text style={styles.orderItemOptions}>({orderItem.options})</Text>
+                  <Text style={styles.orderItemOptions}>
+                    ({orderItem.options})
+                  </Text>
                 )}
               </View>
             ))}
             {order.items.length > 2 && (
               <View style={styles.moreItemsContainer}>
-                <Text style={styles.moreItems}>+{order.items.length - 2} 更多商品</Text>
+                <Text style={styles.moreItems}>
+                  +{order.items.length - 2} 更多商品
+                </Text>
               </View>
             )}
           </View>

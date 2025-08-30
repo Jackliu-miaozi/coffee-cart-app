@@ -19,8 +19,14 @@ import { CoffeeCart, MenuItem } from '../types';
 
 const { width } = Dimensions.get('window');
 
-type CoffeeCartDetailsRouteProp = RouteProp<RootStackParamList, 'CoffeeCartDetails'>;
-type CoffeeCartDetailsNavigationProp = StackNavigationProp<RootStackParamList, 'CoffeeCartDetails'>;
+type CoffeeCartDetailsRouteProp = RouteProp<
+  RootStackParamList,
+  'CoffeeCartDetails'
+>;
+type CoffeeCartDetailsNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'CoffeeCartDetails'
+>;
 
 export default function CoffeeCartDetailsScreen() {
   const route = useRoute<CoffeeCartDetailsRouteProp>();
@@ -42,11 +48,13 @@ export default function CoffeeCartDetailsScreen() {
   const addToCart = (item: MenuItem) => {
     const existingItem = cartItems.find(cartItem => cartItem.id === item.id);
     if (existingItem) {
-      setCartItems(cartItems.map(cartItem =>
-        cartItem.id === item.id
-          ? { ...cartItem, quantity: (cartItem.quantity || 1) + 1 }
-          : cartItem
-      ));
+      setCartItems(
+        cartItems.map(cartItem =>
+          cartItem.id === item.id
+            ? { ...cartItem, quantity: (cartItem.quantity || 1) + 1 }
+            : cartItem
+        )
+      );
     } else {
       setCartItems([...cartItems, { ...item, quantity: 1 }]);
     }
@@ -54,7 +62,10 @@ export default function CoffeeCartDetailsScreen() {
   };
 
   const calculateTotal = () => {
-    return cartItems.reduce((total, item) => total + item.price * (item.quantity || 1), 0);
+    return cartItems.reduce(
+      (total, item) => total + item.price * (item.quantity || 1),
+      0
+    );
   };
 
   const handleCheckout = () => {
@@ -103,7 +114,7 @@ export default function CoffeeCartDetailsScreen() {
             <Text style={styles.rating}>{coffeeCart.rating}</Text>
             <Text style={styles.distance}>{coffeeCart.distance}</Text>
           </View>
-          
+
           <View style={styles.detailsContainer}>
             <View style={styles.detailItem}>
               <Ionicons name="time-outline" size={16} color="#666" />
@@ -130,7 +141,12 @@ export default function CoffeeCartDetailsScreen() {
             style={[styles.tab, activeTab === 'menu' && styles.activeTab]}
             onPress={() => setActiveTab('menu')}
           >
-            <Text style={[styles.tabText, activeTab === 'menu' && styles.activeTabText]}>
+            <Text
+              style={[
+                styles.tabText,
+                activeTab === 'menu' && styles.activeTabText,
+              ]}
+            >
               菜单
             </Text>
           </TouchableOpacity>
@@ -138,7 +154,12 @@ export default function CoffeeCartDetailsScreen() {
             style={[styles.tab, activeTab === 'reviews' && styles.activeTab]}
             onPress={() => setActiveTab('reviews')}
           >
-            <Text style={[styles.tabText, activeTab === 'reviews' && styles.activeTabText]}>
+            <Text
+              style={[
+                styles.tabText,
+                activeTab === 'reviews' && styles.activeTabText,
+              ]}
+            >
               评价
             </Text>
           </TouchableOpacity>
@@ -150,12 +171,17 @@ export default function CoffeeCartDetailsScreen() {
             {coffeeCart.menu.map((category, index) => (
               <View key={index} style={styles.categoryContainer}>
                 <Text style={styles.categoryTitle}>{category.category}</Text>
-                {category.items.map((item) => (
+                {category.items.map(item => (
                   <View key={item.id} style={styles.menuItem}>
-                    <Image source={{ uri: item.image }} style={styles.menuItemImage} />
+                    <Image
+                      source={{ uri: item.image }}
+                      style={styles.menuItemImage}
+                    />
                     <View style={styles.menuItemInfo}>
                       <Text style={styles.menuItemName}>{item.name}</Text>
-                      <Text style={styles.menuItemDescription}>{item.description}</Text>
+                      <Text style={styles.menuItemDescription}>
+                        {item.description}
+                      </Text>
                       <View style={styles.menuItemFooter}>
                         <Text style={styles.menuItemPrice}>¥{item.price}</Text>
                         <TouchableOpacity
@@ -183,10 +209,13 @@ export default function CoffeeCartDetailsScreen() {
               </Text>
             </View>
             {coffeeCart.reviews && coffeeCart.reviews.length > 0 ? (
-              coffeeCart.reviews.map((review) => (
+              coffeeCart.reviews.map(review => (
                 <View key={review.id} style={styles.reviewItem}>
                   <View style={styles.reviewHeader}>
-                    <Image source={{ uri: review.avatar }} style={styles.reviewAvatar} />
+                    <Image
+                      source={{ uri: review.avatar }}
+                      style={styles.reviewAvatar}
+                    />
                     <View style={styles.reviewInfo}>
                       <Text style={styles.reviewUser}>{review.user}</Text>
                       <View style={styles.reviewRating}>
@@ -219,11 +248,19 @@ export default function CoffeeCartDetailsScreen() {
         <View style={styles.cartPreview}>
           <View style={styles.cartInfo}>
             <Text style={styles.cartCount}>
-              共 {cartItems.reduce((total, item) => total + (item.quantity || 1), 0)} 件商品
+              共{' '}
+              {cartItems.reduce(
+                (total, item) => total + (item.quantity || 1),
+                0
+              )}{' '}
+              件商品
             </Text>
             <Text style={styles.cartTotal}>¥{calculateTotal()}</Text>
           </View>
-          <TouchableOpacity style={styles.checkoutButton} onPress={handleCheckout}>
+          <TouchableOpacity
+            style={styles.checkoutButton}
+            onPress={handleCheckout}
+          >
             <Text style={styles.checkoutText}>去结算</Text>
           </TouchableOpacity>
         </View>
@@ -509,4 +546,4 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
   },
-}); 
+});

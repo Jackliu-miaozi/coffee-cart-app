@@ -24,7 +24,7 @@ const TabBar: React.FC<TabBarProps> = ({
 }) => {
   return (
     <View style={[styles.container, style]}>
-      {items.map((item) => (
+      {items.map(item => (
         <TouchableOpacity
           key={item.id}
           style={styles.tab}
@@ -35,14 +35,14 @@ const TabBar: React.FC<TabBarProps> = ({
               styles.tabBackground,
               activeTab === item.id && {
                 backgroundColor: item.color || '#8B4513',
-                ...styles.activeTabBackground
-              }
+                ...styles.activeTabBackground,
+              },
             ]}
           >
             <Text
               style={[
                 styles.tabText,
-                activeTab === item.id && styles.activeTabText
+                activeTab === item.id && styles.activeTabText,
               ]}
             >
               {item.label}

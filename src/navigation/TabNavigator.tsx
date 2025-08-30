@@ -64,21 +64,21 @@ export default function TabNavigator() {
         headerShown: false,
       })}
     >
-      <Tab.Screen 
-        name="Home" 
+      <Tab.Screen
+        name="Home"
         component={HomeScreen}
         options={{ tabBarLabel: '首页' }}
       />
-      <Tab.Screen 
-        name="Orders" 
+      <Tab.Screen
+        name="Orders"
         component={OrdersScreen}
         options={{ tabBarLabel: '订单' }}
       />
-      <Tab.Screen 
-        name="Profile" 
+      <Tab.Screen
+        name="Profile"
         component={ProfileScreen}
         options={{ tabBarLabel: '我的' }}
       />
     </Tab.Navigator>
   );
-} 
+}

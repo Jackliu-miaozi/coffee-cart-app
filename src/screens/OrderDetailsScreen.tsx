@@ -17,14 +17,17 @@ import { orders } from '../data/mockData';
 import { Order } from '../types';
 
 type OrderDetailsRouteProp = RouteProp<RootStackParamList, 'OrderDetails'>;
-type OrderDetailsNavigationProp = StackNavigationProp<RootStackParamList, 'OrderDetails'>;
+type OrderDetailsNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'OrderDetails'
+>;
 
 export default function OrderDetailsScreen() {
   const route = useRoute<OrderDetailsRouteProp>();
   const navigation = useNavigation<OrderDetailsNavigationProp>();
   const { id } = route.params;
 
-  const order = orders.find((o) => o.id === id);
+  const order = orders.find(o => o.id === id);
 
   if (!order) {
     return (
@@ -71,60 +74,93 @@ export default function OrderDetailsScreen() {
         <View style={{ width: 24 }} />
       </View>
 
-      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.scrollView}
+        showsVerticalScrollIndicator={false}
+      >
         {/* Order Status */}
         <View style={styles.statusContainer}>
           <Text style={styles.statusTitle}>{order.statusText}</Text>
           <Text style={styles.orderNumber}>订单号: {order.id}</Text>
-          
+
           {/* Status Progress */}
           <View style={styles.progressContainer}>
             <View style={styles.progressLine} />
             <View style={styles.progressSteps}>
               <View style={styles.progressStep}>
-                <View style={[
-                  styles.stepCircle,
-                  statusStep >= 1 && styles.activeStepCircle
-                ]}>
-                  <Text style={[
-                    styles.stepNumber,
-                    statusStep >= 1 && styles.activeStepNumber
-                  ]}>1</Text>
+                <View
+                  style={[
+                    styles.stepCircle,
+                    statusStep >= 1 && styles.activeStepCircle,
+                  ]}
+                >
+                  <Text
+                    style={[
+                      styles.stepNumber,
+                      statusStep >= 1 && styles.activeStepNumber,
+                    ]}
+                  >
+                    1
+                  </Text>
                 </View>
-                <Text style={[
-                  styles.stepLabel,
-                  statusStep >= 1 && styles.activeStepLabel
-                ]}>已下单</Text>
+                <Text
+                  style={[
+                    styles.stepLabel,
+                    statusStep >= 1 && styles.activeStepLabel,
+                  ]}
+                >
+                  已下单
+                </Text>
               </View>
               <View style={styles.progressStep}>
-                <View style={[
-                  styles.stepCircle,
-                  statusStep >= 2 && styles.activeStepCircle
-                ]}>
-                  <Text style={[
-                    styles.stepNumber,
-                    statusStep >= 2 && styles.activeStepNumber
-                  ]}>2</Text>
+                <View
+                  style={[
+                    styles.stepCircle,
+                    statusStep >= 2 && styles.activeStepCircle,
+                  ]}
+                >
+                  <Text
+                    style={[
+                      styles.stepNumber,
+                      statusStep >= 2 && styles.activeStepNumber,
+                    ]}
+                  >
+                    2
+                  </Text>
                 </View>
-                <Text style={[
-                  styles.stepLabel,
-                  statusStep >= 2 && styles.activeStepLabel
-                ]}>制作中</Text>
+                <Text
+                  style={[
+                    styles.stepLabel,
+                    statusStep >= 2 && styles.activeStepLabel,
+                  ]}
+                >
+                  制作中
+                </Text>
               </View>
               <View style={styles.progressStep}>
-                <View style={[
-                  styles.stepCircle,
-                  statusStep >= 3 && styles.activeStepCircle
-                ]}>
-                  <Text style={[
-                    styles.stepNumber,
-                    statusStep >= 3 && styles.activeStepNumber
-                  ]}>3</Text>
+                <View
+                  style={[
+                    styles.stepCircle,
+                    statusStep >= 3 && styles.activeStepCircle,
+                  ]}
+                >
+                  <Text
+                    style={[
+                      styles.stepNumber,
+                      statusStep >= 3 && styles.activeStepNumber,
+                    ]}
+                  >
+                    3
+                  </Text>
                 </View>
-                <Text style={[
-                  styles.stepLabel,
-                  statusStep >= 3 && styles.activeStepLabel
-                ]}>已完成</Text>
+                <Text
+                  style={[
+                    styles.stepLabel,
+                    statusStep >= 3 && styles.activeStepLabel,
+                  ]}
+                >
+                  已完成
+                </Text>
               </View>
             </View>
           </View>
@@ -146,7 +182,9 @@ export default function OrderDetailsScreen() {
             <Image source={{ uri: order.cartLogo }} style={styles.cartLogo} />
             <View style={styles.cartDetails}>
               <Text style={styles.cartName}>{order.cartName}</Text>
-              <Text style={styles.cartAddress}>地址: 上海市浦东新区张江高科技园区</Text>
+              <Text style={styles.cartAddress}>
+                地址: 上海市浦东新区张江高科技园区
+              </Text>
             </View>
           </View>
           <View style={styles.cartActions}>
@@ -154,7 +192,10 @@ export default function OrderDetailsScreen() {
               <Ionicons name="call-outline" size={16} color="#8B4513" />
               <Text style={styles.actionButtonText}>联系商家</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.navigateButton} onPress={handleNavigate}>
+            <TouchableOpacity
+              style={styles.navigateButton}
+              onPress={handleNavigate}
+            >
               <Ionicons name="location-outline" size={16} color="white" />
               <Text style={styles.navigateButtonText}>导航前往</Text>
             </TouchableOpacity>
@@ -182,7 +223,7 @@ export default function OrderDetailsScreen() {
               </View>
             </View>
           ))}
-          
+
           <View style={styles.priceBreakdown}>
             <View style={styles.priceRow}>
               <Text style={styles.priceLabel}>商品金额</Text>
@@ -563,4 +604,4 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '600',
   },
-}); 
+});

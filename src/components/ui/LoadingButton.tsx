@@ -1,5 +1,10 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import {
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  ActivityIndicator,
+} from 'react-native';
 
 interface LoadingButtonProps {
   title: string;
@@ -59,9 +64,7 @@ const LoadingButton: React.FC<LoadingButtonProps> = ({
       {loading ? (
         <ActivityIndicator color="white" size="small" />
       ) : (
-        <Text style={[getTextStyle(), textStyle]}>
-          {title}
-        </Text>
+        <Text style={[getTextStyle(), textStyle]}>{title}</Text>
       )}
     </TouchableOpacity>
   );

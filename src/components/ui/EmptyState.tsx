@@ -41,10 +41,10 @@ const EmptyState: React.FC<EmptyStateProps> = ({
         <View style={styles.featuresContainer}>
           {features.map((feature, index) => (
             <View key={index} style={styles.featureItem}>
-              <Ionicons 
-                name={feature.icon as any} 
-                size={24} 
-                color={feature.color || '#8B4513'} 
+              <Ionicons
+                name={feature.icon as any}
+                size={24}
+                color={feature.color || '#8B4513'}
               />
               <Text style={styles.featureText}>{feature.title}</Text>
             </View>

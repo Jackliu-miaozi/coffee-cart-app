@@ -1,0 +1,19 @@
+# <type>(<scope>): <subject>
+#
+# <body>
+#
+# <footer>
+
+# type: feat|fix|docs|style|refactor|test|chore
+# scope: 可选，影响的范围
+# subject: 简短描述，不超过50个字符
+# body: 详细描述，可选
+# footer: 可选，用于关闭issues或breaking changes
+
+# 示例:
+# feat(auth): add user login functionality
+# 
+# Add login screen with email and password validation
+# Include remember me option and forgot password link
+#
+# Closes #123

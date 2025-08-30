@@ -53,7 +53,10 @@ export const validateQuantity = (quantity: number): boolean => {
 /**
  * Get validation error message
  */
-export const getValidationErrorMessage = (field: string, type: string): string => {
+export const getValidationErrorMessage = (
+  field: string,
+  type: string
+): string => {
   const messages: { [key: string]: { [key: string]: string } } = {
     phone: {
       required: '请输入手机号',

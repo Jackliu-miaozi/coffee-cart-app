@@ -9,7 +9,11 @@ interface CartItemProps {
   onRemove: (itemId: string) => void;
 }
 
-const CartItem: React.FC<CartItemProps> = ({ item, onUpdateQuantity, onRemove }) => {
+const CartItem: React.FC<CartItemProps> = ({
+  item,
+  onUpdateQuantity,
+  onRemove,
+}) => {
   return (
     <View style={styles.cartItem}>
       <Image source={{ uri: item.image }} style={styles.itemImage} />

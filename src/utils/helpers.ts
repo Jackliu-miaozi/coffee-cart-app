@@ -3,7 +3,11 @@ import { Alert } from 'react-native';
 /**
  * Show alert with title and message
  */
-export const showAlert = (title: string, message: string, onOk?: () => void): void => {
+export const showAlert = (
+  title: string,
+  message: string,
+  onOk?: () => void
+): void => {
   Alert.alert(title, message, [
     {
       text: '确定',
@@ -86,8 +90,10 @@ export const calculateDistance = (
   const dLon = toRadians(lon2 - lon1);
   const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) *
-    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    Math.cos(toRadians(lat1)) *
+      Math.cos(toRadians(lat2)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return R * c * 1000; // Return distance in meters
 };
@@ -105,7 +111,8 @@ const toRadians = (degrees: number): number => {
 export const deepClone = <T>(obj: T): T => {
   if (obj === null || typeof obj !== 'object') return obj;
   if (obj instanceof Date) return new Date(obj.getTime()) as unknown as T;
-  if (obj instanceof Array) return obj.map(item => deepClone(item)) as unknown as T;
+  if (obj instanceof Array)
+    return obj.map(item => deepClone(item)) as unknown as T;
   if (typeof obj === 'object') {
     const copy = {} as { [key: string]: any };
     Object.keys(obj).forEach(key => {

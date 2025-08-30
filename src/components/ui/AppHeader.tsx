@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  StatusBar,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -24,18 +30,28 @@ const AppHeader: React.FC<AppHeaderProps> = ({
 }) => {
   return (
     <>
-      <StatusBar barStyle="light-content" backgroundColor={backgroundColor} translucent={false} />
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor={backgroundColor}
+        translucent={false}
+      />
       <View style={[styles.headerBackground, { backgroundColor }]}>
-        <SafeAreaView style={styles.safeAreaHeader} edges={['top', 'left', 'right']}>
+        <SafeAreaView
+          style={styles.safeAreaHeader}
+          edges={['top', 'left', 'right']}
+        >
           <View style={styles.headerContent}>
             {showBackButton && (
               <View style={styles.backButtonContainer}>
-                <TouchableOpacity onPress={onBackPress} style={styles.backButton}>
+                <TouchableOpacity
+                  onPress={onBackPress}
+                  style={styles.backButton}
+                >
                   <Ionicons name="arrow-back" size={24} color="white" />
                 </TouchableOpacity>
               </View>
             )}
-            
+
             <View style={styles.titleSection}>
               <Text style={styles.headerTitle}>{title}</Text>
               {subtitle && (
@@ -44,9 +60,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
             </View>
 
             {rightComponent && (
-              <View style={styles.rightComponent}>
-                {rightComponent}
-              </View>
+              <View style={styles.rightComponent}>{rightComponent}</View>
             )}
 
             {children}

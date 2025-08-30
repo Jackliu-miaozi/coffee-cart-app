@@ -16,7 +16,10 @@ import { shoppingCart } from '../data/mockData';
 import { CartItem, Coupon } from '../types';
 import { shoppingCartScreenStyles as styles } from '../styles/screens';
 
-type ShoppingCartScreenNavigationProp = StackNavigationProp<RootStackParamList, 'ShoppingCart'>;
+type ShoppingCartScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'ShoppingCart'
+>;
 
 export default function ShoppingCartScreen() {
   const navigation = useNavigation<ShoppingCartScreenNavigationProp>();
@@ -28,10 +31,8 @@ export default function ShoppingCartScreen() {
     if (newQuantity < 1) return;
     setCart({
       ...cart,
-      items: cart.items.map((item) =>
-        item.id === itemId
-          ? { ...item, quantity: newQuantity }
-          : item
+      items: cart.items.map(item =>
+        item.id === itemId ? { ...item, quantity: newQuantity } : item
       ),
     });
   };
@@ -39,12 +40,12 @@ export default function ShoppingCartScreen() {
   const removeItem = (itemId: string) => {
     setCart({
       ...cart,
-      items: cart.items.filter((item) => item.id !== itemId),
+      items: cart.items.filter(item => item.id !== itemId),
     });
   };
 
   const selectCoupon = (couponId: string) => {
-    const selectedCoupon = cart.coupons.find((coupon) => coupon.id === couponId);
+    const selectedCoupon = cart.coupons.find(coupon => coupon.id === couponId);
     const totalAmount = calculateTotal();
     const discount = selectedCoupon ? selectedCoupon.discount : 0;
     setCart({
@@ -110,13 +111,16 @@ export default function ShoppingCartScreen() {
         <View style={{ width: 24 }} />
       </View>
 
-      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.scrollView}
+        showsVerticalScrollIndicator={false}
+      >
         {/* Cart Items */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>已选商品</Text>
           </View>
-          {cart.items.map((item) => (
+          {cart.items.map(item => (
             <View key={item.id} style={styles.cartItem}>
               <Image source={{ uri: item.image }} style={styles.itemImage} />
               <View style={styles.itemInfo}>
@@ -159,24 +163,25 @@ export default function ShoppingCartScreen() {
             <Text style={styles.sectionTitle}>优惠券</Text>
             <Text style={styles.couponInfo}>
               {cart.selectedCoupon
-                ? cart.coupons.find((c) => c.id === cart.selectedCoupon)?.name
+                ? cart.coupons.find(c => c.id === cart.selectedCoupon)?.name
                 : '未选择'}
             </Text>
           </View>
           <View style={styles.couponsContainer}>
-            {cart.coupons.map((coupon) => (
+            {cart.coupons.map(coupon => (
               <TouchableOpacity
                 key={coupon.id}
                 style={[
                   styles.couponItem,
-                  cart.selectedCoupon === coupon.id && styles.selectedCoupon
+                  cart.selectedCoupon === coupon.id && styles.selectedCoupon,
                 ]}
                 onPress={() => selectCoupon(coupon.id)}
               >
                 <View style={styles.couponInfo}>
                   <Text style={styles.couponName}>{coupon.name}</Text>
                   <Text style={styles.couponDetails}>
-                    满{coupon.minAmount}减{coupon.discount} · 有效期至{coupon.expireDate}
+                    满{coupon.minAmount}减{coupon.discount} · 有效期至
+                    {coupon.expireDate}
                   </Text>
                 </View>
                 <Text style={styles.couponDiscount}>-¥{coupon.discount}</Text>
@@ -194,20 +199,26 @@ export default function ShoppingCartScreen() {
             <View style={styles.inputGroup}>
               <Text style={styles.inputLabel}>取货时间</Text>
               <View style={styles.pickupTimeContainer}>
-                {['15min', '30min', '1hour'].map((time) => (
+                {['15min', '30min', '1hour'].map(time => (
                   <TouchableOpacity
                     key={time}
                     style={[
                       styles.timeButton,
-                      pickupTime === time && styles.selectedTimeButton
+                      pickupTime === time && styles.selectedTimeButton,
                     ]}
                     onPress={() => setPickupTime(time)}
                   >
-                    <Text style={[
-                      styles.timeButtonText,
-                      pickupTime === time && styles.selectedTimeButtonText
-                    ]}>
-                      {time === '15min' ? '15分钟后' : time === '30min' ? '30分钟后' : '1小时后'}
+                    <Text
+                      style={[
+                        styles.timeButtonText,
+                        pickupTime === time && styles.selectedTimeButtonText,
+                      ]}
+                    >
+                      {time === '15min'
+                        ? '15分钟后'
+                        : time === '30min'
+                          ? '30分钟后'
+                          : '1小时后'}
                     </Text>
                   </TouchableOpacity>
                 ))}
@@ -245,12 +256,13 @@ export default function ShoppingCartScreen() {
           <Text style={styles.totalLabel}>实付金额</Text>
           <Text style={styles.totalValue}>¥{cart.finalAmount}</Text>
         </View>
-        <TouchableOpacity style={styles.submitButton} onPress={handleSubmitOrder}>
+        <TouchableOpacity
+          style={styles.submitButton}
+          onPress={handleSubmitOrder}
+        >
           <Text style={styles.submitButtonText}>提交订单</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 }
-
- 

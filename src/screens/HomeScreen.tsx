@@ -22,8 +22,6 @@ import { CoffeeCart } from '../types';
 import { useAuthStore } from '../stores/authStore';
 import { homeScreenStyles as styles } from '../styles/screens';
 
-
-
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
 export default function HomeScreen() {
@@ -32,7 +30,8 @@ export default function HomeScreen() {
   const mapRef = useRef<MapView>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCart, setSelectedCart] = useState<CoffeeCart | null>(null);
-  const [userLocation, setUserLocation] = useState<Location.LocationObject | null>(null);
+  const [userLocation, setUserLocation] =
+    useState<Location.LocationObject | null>(null);
   const [region, setRegion] = useState({
     latitude: 31.2304,
     longitude: 121.4737,
@@ -47,7 +46,9 @@ export default function HomeScreen() {
   });
   const [isMapReady, setIsMapReady] = useState(false);
   const [isLocating, setIsLocating] = useState(false);
-  const [hasLocationPermission, setHasLocationPermission] = useState<boolean | null>(null);
+  const [hasLocationPermission, setHasLocationPermission] = useState<
+    boolean | null
+  >(null);
   const [lastLocationTime, setLastLocationTime] = useState<number>(0);
   const [isQuickResponse, setIsQuickResponse] = useState(false);
 
@@ -59,7 +60,7 @@ export default function HomeScreen() {
         setHasLocationPermission(false);
         return;
       }
-      
+
       setHasLocationPermission(true);
       let location = await Location.getCurrentPositionAsync({
         accuracy: Location.Accuracy.Balanced,
@@ -99,7 +100,7 @@ export default function HomeScreen() {
 
   const handleLocationPress = async () => {
     if (isLocating) return; // 防止重复点击
-    
+
     // 点击定位按钮时也收回键盘
     Keyboard.dismiss();
     setIsLocating(true);
@@ -117,7 +118,7 @@ export default function HomeScreen() {
 
       // 检查是否需要重新定位（5秒内的位置认为有效）
       const now = Date.now();
-      if (userLocation && (now - lastLocationTime) < 5000) {
+      if (userLocation && now - lastLocationTime < 5000) {
         // 使用缓存的位置，立即响应
         setIsQuickResponse(true);
         const newRegion = {
@@ -138,7 +139,7 @@ export default function HomeScreen() {
       let location = await Location.getCurrentPositionAsync({
         accuracy: Location.Accuracy.Low,
       });
-      
+
       setUserLocation(location);
       setLastLocationTime(Date.now());
       const newRegion = {
@@ -164,7 +165,6 @@ export default function HomeScreen() {
           console.log('高精度定位失败，使用低精度位置');
         }
       }, 1000);
-
     } catch (error) {
       console.error('获取位置失败:', error);
       Alert.alert('定位失败', '无法获取当前位置，请检查位置权限');
@@ -194,14 +194,18 @@ export default function HomeScreen() {
                 <Ionicons name="cafe" size={60} color="#8B4513" />
               </View>
               <Text style={styles.emptyTitle}>欢迎来到咖啡车</Text>
-              <Text style={styles.emptySubtitle}>登录后查看附近的咖啡车和更多功能</Text>
+              <Text style={styles.emptySubtitle}>
+                登录后查看附近的咖啡车和更多功能
+              </Text>
             </View>
 
             {/* Empty State Content */}
             <View style={styles.emptyContent}>
               <View style={styles.emptyMapPlaceholder}>
                 <Ionicons name="map-outline" size={80} color="#CCC" />
-                <Text style={styles.placeholderText}>地图功能需要登录后使用</Text>
+                <Text style={styles.placeholderText}>
+                  地图功能需要登录后使用
+                </Text>
               </View>
 
               <View style={styles.emptyFeatures}>
@@ -237,10 +241,12 @@ export default function HomeScreen() {
               <TouchableOpacity
                 style={styles.skipButton}
                 onPress={() => {
-                  Alert.alert('提示', '您已经在首页了，可以开始探索附近的咖啡车！');
+                  Alert.alert(
+                    '提示',
+                    '您已经在首页了，可以开始探索附近的咖啡车！'
+                  );
                 }}
-              >
-              </TouchableOpacity>
+              ></TouchableOpacity>
             </View>
           </ScrollView>
         </TouchableWithoutFeedback>
@@ -251,113 +257,141 @@ export default function HomeScreen() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={styles.container}>
-      {/* Search Bar */}
-      <View style={styles.searchContainer}>
-        <View style={styles.searchBar}>
-          <Ionicons name="search" size={20} color="#666" style={styles.searchIcon} />
-          <TextInput
-            style={styles.searchInput}
-            placeholder="搜索咖啡车或地址..."
-            value={searchQuery}
-            onChangeText={setSearchQuery}
-            placeholderTextColor="#999"
-          />
+        {/* Search Bar */}
+        <View style={styles.searchContainer}>
+          <View style={styles.searchBar}>
+            <Ionicons
+              name="search"
+              size={20}
+              color="#666"
+              style={styles.searchIcon}
+            />
+            <TextInput
+              style={styles.searchInput}
+              placeholder="搜索咖啡车或地址..."
+              value={searchQuery}
+              onChangeText={setSearchQuery}
+              placeholderTextColor="#999"
+            />
+          </View>
         </View>
-      </View>
 
-      {/* Map */}
-      <MapView
-        ref={mapRef}
-        provider={PROVIDER_GOOGLE}
-        style={styles.map}
-        region={mapRegion}
-        showsUserLocation={true}
-        showsMyLocationButton={false}
-        followsUserLocation={false}
-        rotateEnabled={false}
-        scrollEnabled={true}
-        zoomEnabled={true}
-        pitchEnabled={false}
-        onMapReady={() => setIsMapReady(true)}
-        onPress={handleMapPress}
+        {/* Map */}
+        <MapView
+          ref={mapRef}
+          provider={PROVIDER_GOOGLE}
+          style={styles.map}
+          region={mapRegion}
+          showsUserLocation={true}
+          showsMyLocationButton={false}
+          followsUserLocation={false}
+          rotateEnabled={false}
+          scrollEnabled={true}
+          zoomEnabled={true}
+          pitchEnabled={false}
+          onMapReady={() => setIsMapReady(true)}
+          onPress={handleMapPress}
+        >
+          {isMapReady &&
+            filteredCarts.map(cart => (
+              <Marker
+                key={cart.id}
+                coordinate={{
+                  latitude: cart.location.lat,
+                  longitude: cart.location.lng,
+                }}
+                onPress={() => handleCartPress(cart)}
               >
-          {isMapReady && filteredCarts.map((cart) => (
-            <Marker
-              key={cart.id}
-              coordinate={{
-                latitude: cart.location.lat,
-                longitude: cart.location.lng,
-              }}
-              onPress={() => handleCartPress(cart)}
-            >
-              <View style={styles.markerContainer}>
-                <View style={[
-                  styles.marker,
-                  { backgroundColor: cart.status === 'open' ? '#4CAF50' : '#9E9E9E' }
-                ]}>
-                  <Ionicons name="cafe" size={16} color="white" />
+                <View style={styles.markerContainer}>
+                  <View
+                    style={[
+                      styles.marker,
+                      {
+                        backgroundColor:
+                          cart.status === 'open' ? '#4CAF50' : '#9E9E9E',
+                      },
+                    ]}
+                  >
+                    <Ionicons name="cafe" size={16} color="white" />
+                  </View>
                 </View>
-              </View>
-            </Marker>
-          ))}
+              </Marker>
+            ))}
         </MapView>
 
-      {/* Location Button */}
-      <TouchableOpacity 
-        style={[
-          styles.locationButton, 
-          isLocating && styles.locationButtonDisabled,
-          isQuickResponse && styles.locationButtonSuccess
-        ]} 
-        onPress={handleLocationPress}
-        disabled={isLocating}
-        activeOpacity={0.7}
-      >
-        <Ionicons 
-          name={isQuickResponse ? "checkmark" : (isLocating ? "refresh" : "locate")} 
-          size={24} 
-          color={isQuickResponse ? "#4CAF50" : (isLocating ? "#999" : "#8B4513")} 
-        />
-      </TouchableOpacity>
+        {/* Location Button */}
+        <TouchableOpacity
+          style={[
+            styles.locationButton,
+            isLocating && styles.locationButtonDisabled,
+            isQuickResponse && styles.locationButtonSuccess,
+          ]}
+          onPress={handleLocationPress}
+          disabled={isLocating}
+          activeOpacity={0.7}
+        >
+          <Ionicons
+            name={
+              isQuickResponse ? 'checkmark' : isLocating ? 'refresh' : 'locate'
+            }
+            size={24}
+            color={
+              isQuickResponse ? '#4CAF50' : isLocating ? '#999' : '#8B4513'
+            }
+          />
+        </TouchableOpacity>
 
-      {/* Selected Cart Info Card */}
-      {selectedCart && (
-        <View style={styles.cartInfoCard}>
-          <View style={styles.cartInfoHeader}>
-            <Image source={{ uri: selectedCart.image }} style={styles.cartImage} />
-            <View style={styles.cartInfo}>
-              <Text style={styles.cartName}>{selectedCart.name}</Text>
-              <View style={styles.cartDetails}>
-                <View style={styles.ratingContainer}>
-                  <Ionicons name="star" size={14} color="#FFD700" />
-                  <Text style={styles.rating}>{selectedCart.rating}</Text>
+        {/* Selected Cart Info Card */}
+        {selectedCart && (
+          <View style={styles.cartInfoCard}>
+            <View style={styles.cartInfoHeader}>
+              <Image
+                source={{ uri: selectedCart.image }}
+                style={styles.cartImage}
+              />
+              <View style={styles.cartInfo}>
+                <Text style={styles.cartName}>{selectedCart.name}</Text>
+                <View style={styles.cartDetails}>
+                  <View style={styles.ratingContainer}>
+                    <Ionicons name="star" size={14} color="#FFD700" />
+                    <Text style={styles.rating}>{selectedCart.rating}</Text>
+                  </View>
+                  <Text style={styles.distance}>{selectedCart.distance}</Text>
                 </View>
-                <Text style={styles.distance}>{selectedCart.distance}</Text>
-              </View>
-              <View style={[
-                styles.statusBadge,
-                { backgroundColor: selectedCart.status === 'open' ? '#E8F5E8' : '#F5F5F5' }
-              ]}>
-                <Text style={[
-                  styles.statusText,
-                  { color: selectedCart.status === 'open' ? '#4CAF50' : '#9E9E9E' }
-                ]}>
-                  {selectedCart.status === 'open' ? '营业中' : '已关闭'}
-                </Text>
+                <View
+                  style={[
+                    styles.statusBadge,
+                    {
+                      backgroundColor:
+                        selectedCart.status === 'open' ? '#E8F5E8' : '#F5F5F5',
+                    },
+                  ]}
+                >
+                  <Text
+                    style={[
+                      styles.statusText,
+                      {
+                        color:
+                          selectedCart.status === 'open'
+                            ? '#4CAF50'
+                            : '#9E9E9E',
+                      },
+                    ]}
+                  >
+                    {selectedCart.status === 'open' ? '营业中' : '已关闭'}
+                  </Text>
+                </View>
               </View>
             </View>
+            <TouchableOpacity
+              style={styles.viewDetailsButton}
+              onPress={() => handleViewDetails(selectedCart.id)}
+            >
+              <Text style={styles.viewDetailsText}>查看详情</Text>
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            style={styles.viewDetailsButton}
-            onPress={() => handleViewDetails(selectedCart.id)}
-          >
-            <Text style={styles.viewDetailsText}>查看详情</Text>
-          </TouchableOpacity>
-        </View>
-      )}
+        )}
       </View>
     </TouchableWithoutFeedback>
   );
 }
-
- 

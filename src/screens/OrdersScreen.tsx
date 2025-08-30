@@ -1,31 +1,35 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  ScrollView,
-} from 'react-native';
+import { View, Text, FlatList, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
 import { orders } from '../data/mockData';
 import { Order } from '../types';
 import { useAuthStore } from '../stores/authStore';
-import { AppHeader, SearchBar, EmptyState, TabBar, OrderCard } from '../components';
+import {
+  AppHeader,
+  SearchBar,
+  EmptyState,
+  TabBar,
+  OrderCard,
+} from '../components';
 import { COLORS } from '../utils';
 import { ordersScreenStyles as styles } from '../styles/screens';
 
-
-
-type OrdersScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Orders'>;
+type OrdersScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'Orders'
+>;
 
 export default function OrdersScreen() {
   const navigation = useNavigation<OrdersScreenNavigationProp>();
   const { isAuthenticated, isGuest } = useAuthStore();
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeTab, setActiveTab] = useState<'all' | 'pending' | 'completed'>('all');
+  const [activeTab, setActiveTab] = useState<'all' | 'pending' | 'completed'>(
+    'all'
+  );
 
-  const filteredOrders = orders.filter((order) => {
+  const filteredOrders = orders.filter(order => {
     if (activeTab === 'pending' && order.status !== 'pending') return false;
     if (activeTab === 'completed' && order.status !== 'completed') return false;
     if (searchQuery) {
@@ -34,12 +38,10 @@ export default function OrdersScreen() {
     return true;
   });
 
-
-
   const renderOrderItem = ({ item }: { item: Order }) => (
-    <OrderCard 
-      order={item} 
-      onPress={() => navigation.navigate('OrderDetails', { id: item.id })} 
+    <OrderCard
+      order={item}
+      onPress={() => navigation.navigate('OrderDetails', { id: item.id })}
     />
   );
 
@@ -47,11 +49,8 @@ export default function OrdersScreen() {
   if (isGuest) {
     return (
       <View style={styles.container}>
-        <AppHeader 
-          title="我的订单" 
-          subtitle="登录后查看您的订单记录"
-        />
-        
+        <AppHeader title="我的订单" subtitle="登录后查看您的订单记录" />
+
         <ScrollView
           style={styles.emptyScroll}
           keyboardShouldPersistTaps="handled"
@@ -75,16 +74,23 @@ export default function OrdersScreen() {
 
   const tabItems = [
     { id: 'all', label: '全部', count: orders.length, color: COLORS.PRIMARY },
-    { id: 'pending', label: '待取货', count: orders.filter(o => o.status === 'pending').length, color: '#FF6B6B' },
-    { id: 'completed', label: '已完成', count: orders.filter(o => o.status === 'completed').length, color: '#4ECDC4' },
+    {
+      id: 'pending',
+      label: '待取货',
+      count: orders.filter(o => o.status === 'pending').length,
+      color: '#FF6B6B',
+    },
+    {
+      id: 'completed',
+      label: '已完成',
+      count: orders.filter(o => o.status === 'completed').length,
+      color: '#4ECDC4',
+    },
   ];
 
   return (
     <View style={styles.container}>
-      <AppHeader 
-        title="我的订单" 
-        subtitle={`共 ${orders.length} 个订单`}
-      >
+      <AppHeader title="我的订单" subtitle={`共 ${orders.length} 个订单`}>
         <View style={styles.searchContainer}>
           <SearchBar
             value={searchQuery}
@@ -99,14 +105,16 @@ export default function OrdersScreen() {
         <TabBar
           items={tabItems}
           activeTab={activeTab}
-          onTabPress={(tabId) => setActiveTab(tabId as 'all' | 'pending' | 'completed')}
+          onTabPress={tabId =>
+            setActiveTab(tabId as 'all' | 'pending' | 'completed')
+          }
         />
 
         {/* Orders List */}
         <FlatList
           data={filteredOrders}
           renderItem={renderOrderItem}
-          keyExtractor={(item) => item.id}
+          keyExtractor={item => item.id}
           style={styles.ordersList}
           contentContainerStyle={styles.ordersListContent}
           showsVerticalScrollIndicator={false}
@@ -123,5 +131,3 @@ export default function OrdersScreen() {
     </View>
   );
 }
-
- 

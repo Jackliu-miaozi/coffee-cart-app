@@ -25,7 +25,10 @@ export default function AppNavigator() {
           // 已认证用户看到的界面
           <>
             <Stack.Screen name="Home" component={TabNavigator} />
-            <Stack.Screen name="CoffeeCartDetails" component={CoffeeCartDetailsScreen} />
+            <Stack.Screen
+              name="CoffeeCartDetails"
+              component={CoffeeCartDetailsScreen}
+            />
             <Stack.Screen name="ShoppingCart" component={ShoppingCartScreen} />
             <Stack.Screen name="Orders" component={TabNavigator} />
             <Stack.Screen name="OrderDetails" component={OrderDetailsScreen} />
@@ -38,4 +41,4 @@ export default function AppNavigator() {
       </Stack.Navigator>
     </NavigationContainer>
   );
-} 
+}

@@ -54,7 +54,10 @@ export default function LoginScreen() {
       await login(phoneNumber, verificationCode);
       // 登录成功后会自动更新状态，主导航器会处理跳转
     } catch (error) {
-      Alert.alert('登录失败', error instanceof Error ? error.message : '未知错误');
+      Alert.alert(
+        '登录失败',
+        error instanceof Error ? error.message : '未知错误'
+      );
     } finally {
       setIsLoading(false);
     }
@@ -94,7 +97,12 @@ export default function LoginScreen() {
             <View style={styles.formSection}>
               <View style={styles.inputContainer}>
                 <View style={styles.inputWrapper}>
-                  <Ionicons name="call-outline" size={20} color="#666" style={styles.inputIcon} />
+                  <Ionicons
+                    name="call-outline"
+                    size={20}
+                    color="#666"
+                    style={styles.inputIcon}
+                  />
                   <TextInput
                     style={styles.input}
                     placeholder="请输入手机号"
@@ -119,7 +127,12 @@ export default function LoginScreen() {
                 ) : (
                   <>
                     <View style={styles.inputWrapper}>
-                      <Ionicons name="key-outline" size={20} color="#666" style={styles.inputIcon} />
+                      <Ionicons
+                        name="key-outline"
+                        size={20}
+                        color="#666"
+                        style={styles.inputIcon}
+                      />
                       <TextInput
                         style={styles.input}
                         placeholder="请输入验证码"
@@ -131,7 +144,10 @@ export default function LoginScreen() {
                     </View>
 
                     <TouchableOpacity
-                      style={[styles.button, isLoading && styles.buttonDisabled]}
+                      style={[
+                        styles.button,
+                        isLoading && styles.buttonDisabled,
+                      ]}
                       onPress={handleLogin}
                       disabled={isLoading}
                     >
@@ -175,5 +191,3 @@ export default function LoginScreen() {
     </View>
   );
 }
-
-

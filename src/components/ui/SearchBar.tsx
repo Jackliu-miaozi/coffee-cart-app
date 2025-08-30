@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 interface SearchBarProps {
@@ -15,7 +21,7 @@ interface SearchBarProps {
 const SearchBar: React.FC<SearchBarProps> = ({
   value,
   onChangeText,
-  placeholder = "搜索...",
+  placeholder = '搜索...',
   showClearButton = true,
   onClear,
   style,
@@ -29,7 +35,12 @@ const SearchBar: React.FC<SearchBarProps> = ({
   return (
     <View style={[styles.container, containerStyle]}>
       <View style={[styles.searchBar, style]}>
-        <Ionicons name="search" size={20} color="#666" style={styles.searchIcon} />
+        <Ionicons
+          name="search"
+          size={20}
+          color="#666"
+          style={styles.searchIcon}
+        />
         <TextInput
           style={styles.searchInput}
           placeholder={placeholder}

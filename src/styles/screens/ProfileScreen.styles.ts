@@ -3,7 +3,7 @@ import { LAYOUT, COLORS, COMMON_STYLES, SHADOWS } from '../../utils';
 
 export const profileScreenStyles = StyleSheet.create({
   container: COMMON_STYLES.container,
-  
+
   // User Section Styles
   userSection: {
     flexDirection: 'row',

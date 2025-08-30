@@ -5,7 +5,8 @@ export const coffeeCarts: CoffeeCart[] = [
   {
     id: '1',
     name: '咖啡星球',
-    image: 'https://images.unsplash.com/photo-1567016526105-22da7c13161a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80',
+    image:
+      'https://images.unsplash.com/photo-1567016526105-22da7c13161a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80',
     images: [
       'https://images.unsplash.com/photo-1567016526105-22da7c13161a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80',
       'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
@@ -28,14 +29,16 @@ export const coffeeCarts: CoffeeCart[] = [
             id: 'c1',
             name: '美式咖啡',
             price: 18,
-            image: 'https://images.unsplash.com/photo-1520031607503-2d59cfa3d390?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+            image:
+              'https://images.unsplash.com/photo-1520031607503-2d59cfa3d390?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
             description: '浓郁的咖啡香气，清爽的口感',
           },
           {
             id: 'c2',
             name: '拿铁',
             price: 22,
-            image: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1637&q=80',
+            image:
+              'https://images.unsplash.com/photo-1541167760496-1628856ab772?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1637&q=80',
             description: '丝滑奶泡与醇厚咖啡的完美结合',
           },
         ],
@@ -47,7 +50,8 @@ export const coffeeCarts: CoffeeCart[] = [
             id: 't1',
             name: '抹茶拿铁',
             price: 24,
-            image: 'https://images.unsplash.com/photo-1546039907-8d3112854ef9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+            image:
+              'https://images.unsplash.com/photo-1546039907-8d3112854ef9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
             description: '日式抹茶与牛奶的融合',
           },
         ],
@@ -75,7 +79,8 @@ export const coffeeCarts: CoffeeCart[] = [
   {
     id: '2',
     name: '漫步咖啡',
-    image: 'https://images.unsplash.com/photo-1498804103079-a6351b050096?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80',
+    image:
+      'https://images.unsplash.com/photo-1498804103079-a6351b050096?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80',
     rating: 4.5,
     distance: '0.8km',
     status: 'open',
@@ -87,7 +92,8 @@ export const coffeeCarts: CoffeeCart[] = [
   {
     id: '3',
     name: '悠然咖啡屋',
-    image: 'https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1420&q=80',
+    image:
+      'https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1420&q=80',
     rating: 4.3,
     distance: '1.2km',
     status: 'closed',
@@ -104,7 +110,8 @@ export const orders: Order[] = [
     id: 'o1',
     cartId: '1',
     cartName: '咖啡星球',
-    cartLogo: 'https://images.unsplash.com/photo-1567016526105-22da7c13161a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80',
+    cartLogo:
+      'https://images.unsplash.com/photo-1567016526105-22da7c13161a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80',
     status: 'pending',
     statusText: '待取货',
     createdAt: '2023-06-20 14:30',
@@ -130,13 +137,15 @@ export const orders: Order[] = [
     finalAmount: 57,
     paymentMethod: '微信支付',
     note: '请多加一包糖',
-    qrCode: 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=order-o1',
+    qrCode:
+      'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=order-o1',
   },
   {
     id: 'o2',
     cartId: '2',
     cartName: '漫步咖啡',
-    cartLogo: 'https://images.unsplash.com/photo-1498804103079-a6351b050096?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80',
+    cartLogo:
+      'https://images.unsplash.com/photo-1498804103079-a6351b050096?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80',
     status: 'completed',
     statusText: '已完成',
     createdAt: '2023-06-18 10:15',
@@ -154,7 +163,8 @@ export const orders: Order[] = [
     discount: 0,
     finalAmount: 25,
     paymentMethod: '支付宝',
-    qrCode: 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=order-o2',
+    qrCode:
+      'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=order-o2',
   },
 ];
 
@@ -190,7 +200,8 @@ export const shoppingCart: ShoppingCart = {
       name: '美式咖啡',
       price: 18,
       quantity: 1,
-      image: 'https://images.unsplash.com/photo-1520031607503-2d59cfa3d390?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+      image:
+        'https://images.unsplash.com/photo-1520031607503-2d59cfa3d390?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
       options: '中杯, 少糖',
     },
     {
@@ -198,7 +209,8 @@ export const shoppingCart: ShoppingCart = {
       name: '拿铁',
       price: 22,
       quantity: 2,
-      image: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1637&q=80',
+      image:
+        'https://images.unsplash.com/photo-1541167760496-1628856ab772?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1637&q=80',
       options: '大杯, 标准糖',
     },
   ],
@@ -222,4 +234,4 @@ export const shoppingCart: ShoppingCart = {
   selectedCoupon: 'cp1',
   discount: 5,
   finalAmount: 57,
-}; 
+};
