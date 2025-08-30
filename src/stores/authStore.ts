@@ -8,6 +8,7 @@ export const useAuthStore = create<AuthState>()(
     (set, get) => ({
       user: null,
       isAuthenticated: false,
+      isGuest: false,
       isLoading: false,
 
       login: async (phone: string, code: string) => {
@@ -29,6 +30,7 @@ export const useAuthStore = create<AuthState>()(
           set({
             user: mockUser,
             isAuthenticated: true,
+            isGuest: false,
             isLoading: false,
           });
         } catch (error) {
@@ -41,6 +43,7 @@ export const useAuthStore = create<AuthState>()(
         set({
           user: null,
           isAuthenticated: false,
+          isGuest: false,
           isLoading: false,
         });
       },
@@ -48,7 +51,8 @@ export const useAuthStore = create<AuthState>()(
       skipAuth: () => {
         set({
           user: null,
-          isAuthenticated: true, // 设置为true以跳过认证
+          isAuthenticated: true, // 允许进入主导航
+          isGuest: true, // 标记为游客模式
           isLoading: false,
         });
       },
@@ -59,6 +63,7 @@ export const useAuthStore = create<AuthState>()(
       partialize: (state) => ({
         user: state.user,
         isAuthenticated: state.isAuthenticated,
+        isGuest: state.isGuest,
       }),
     }
   )

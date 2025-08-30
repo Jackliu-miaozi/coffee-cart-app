@@ -10,6 +10,7 @@ import {
   Alert,
   Dimensions,
   Keyboard,
+  ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
@@ -20,6 +21,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
 import { coffeeCarts } from '../data/mockData';
 import { CoffeeCart } from '../types';
+import { useAuthStore } from '../stores/authStore';
 
 const { width, height } = Dimensions.get('window');
 
@@ -33,6 +35,7 @@ type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
 export default function HomeScreen() {
   const navigation = useNavigation<HomeScreenNavigationProp>();
+  const { isAuthenticated, isGuest } = useAuthStore();
   const mapRef = useRef<MapView>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCart, setSelectedCart] = useState<CoffeeCart | null>(null);
@@ -181,8 +184,79 @@ export default function HomeScreen() {
     cart.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  // 未登录（游客）状态的空状态界面
+  if (isGuest) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+          <ScrollView
+            style={styles.emptyScroll}
+            // contentContainerStyle={styles.emptyScrollContent}
+            keyboardShouldPersistTaps="handled"
+            showsVerticalScrollIndicator={false}
+          >
+            {/* Header */}
+            <View style={styles.emptyHeader}>
+              <View style={styles.emptyLogoContainer}>
+                <Ionicons name="cafe" size={60} color="#8B4513" />
+              </View>
+              <Text style={styles.emptyTitle}>欢迎来到咖啡车</Text>
+              <Text style={styles.emptySubtitle}>登录后查看附近的咖啡车和更多功能</Text>
+            </View>
+
+            {/* Empty State Content */}
+            <View style={styles.emptyContent}>
+              <View style={styles.emptyMapPlaceholder}>
+                <Ionicons name="map-outline" size={80} color="#CCC" />
+                <Text style={styles.placeholderText}>地图功能需要登录后使用</Text>
+              </View>
+
+              <View style={styles.emptyFeatures}>
+                <View style={styles.featureItem}>
+                  <Ionicons name="location" size={24} color="#8B4513" />
+                  <Text style={styles.featureText}>查看附近咖啡车</Text>
+                </View>
+                <View style={styles.featureItem}>
+                  <Ionicons name="search" size={24} color="#8B4513" />
+                  <Text style={styles.featureText}>搜索咖啡车</Text>
+                </View>
+                <View style={styles.featureItem}>
+                  <Ionicons name="receipt" size={24} color="#8B4513" />
+                  <Text style={styles.featureText}>在线下单</Text>
+                </View>
+                <View style={styles.featureItem}>
+                  <Ionicons name="heart" size={24} color="#8B4513" />
+                  <Text style={styles.featureText}>收藏咖啡车</Text>
+                </View>
+              </View>
+            </View>
+
+            {/* Login Button */}
+            <View style={styles.loginSection}>
+              <TouchableOpacity
+                style={styles.loginButton}
+                onPress={() => navigation.navigate('Auth')}
+              >
+                <Ionicons name="log-in" size={20} color="white" />
+                <Text style={styles.loginButtonText}>立即登录</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.skipButton}
+                onPress={() => {
+                  Alert.alert('提示', '您已经在首页了，可以开始探索附近的咖啡车！');
+                }}
+              >
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
+        </TouchableWithoutFeedback>
+      </SafeAreaView>
+    );
+  }
+
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={styles.container}>
       {/* Search Bar */}
       <View style={styles.searchContainer}>
@@ -464,4 +538,145 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: '700',
   },
+
+  // Empty State Styles
+  emptyContainer: {
+    flex: 1,
+    backgroundColor: '#F8F9FA',
+  },
+  emptyHeader: {
+    alignItems: 'center',
+    paddingTop: 80,
+    paddingBottom: 40,
+    paddingHorizontal: 30,
+  },
+  emptyLogoContainer: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: '#FFF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+    shadowColor: '#8B4513',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 10,
+  },
+  emptyTitle: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#8B4513',
+    marginTop: 20,
+    marginBottom: 8,
+  },
+  emptySubtitle: {
+    fontSize: 16,
+    color: '#666',
+    textAlign: 'center',
+    lineHeight: 24,
+  },
+  emptyContent: {
+    flex: 1,
+    paddingHorizontal: 30,
+  },
+  emptyMapPlaceholder: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 40,
+    marginBottom: 40,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  placeholderText: {
+    fontSize: 16,
+    color: '#666',
+    marginTop: 16,
+    textAlign: 'center',
+  },
+  emptyFeatures: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  featureItem: {
+    width: (width - 60 - 20) / 2,
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  featureText: {
+    fontSize: 14,
+    color: '#333',
+    marginTop: 8,
+    textAlign: 'center',
+    fontWeight: '500',
+  },
+  loginSection: {
+    paddingHorizontal: 30,
+    paddingBottom: 40,
+  },
+  loginButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#8B4513',
+    borderRadius: 16,
+    paddingVertical: 16,
+    marginBottom: 16,
+    shadowColor: '#8B4513',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+  loginButtonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginLeft: 8,
+  },
+  skipButton: {
+    alignItems: 'center',
+    paddingVertical: 12,
+  },
+  skipButtonText: {
+    color: '#8B4513',
+    fontSize: 16,
+    textDecorationLine: 'underline',
+  },
+
+  // ScrollView Styles for Guest Mode
+  emptyScroll: {
+    flex: 1,
+  },
+  // emptyScrollContent: {
+  //   flexGrow: 1,
+  //   paddingBottom: 100,
+  // },
 }); 

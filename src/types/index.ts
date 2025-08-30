@@ -126,6 +126,7 @@ export interface User {
 export interface AuthState {
   user: User | null;
   isAuthenticated: boolean;
+  isGuest: boolean;
   isLoading: boolean;
   login: (phone: string, code: string) => Promise<void>;
   logout: () => void;
