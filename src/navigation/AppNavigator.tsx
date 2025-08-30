@@ -12,14 +12,7 @@ import OrderDetailsScreen from '../screens/OrderDetailsScreen';
 const Stack = createStackNavigator<RootStackParamList>();
 
 export default function AppNavigator() {
-  const { isAuthenticated, isGuest } = useAuthStore();
-
-  console.log(
-    'AppNavigator render - isAuthenticated:',
-    isAuthenticated,
-    'isGuest:',
-    isGuest
-  );
+  const { isAuthenticated } = useAuthStore();
 
   return (
     <NavigationContainer>

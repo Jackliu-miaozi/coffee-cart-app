@@ -66,18 +66,15 @@ export default function LoginScreen() {
 
   const handleSkipLogin = () => {
     // 跳过登录，直接进入应用
-    console.log('Calling skipAuth()...');
     skipAuth();
-    console.log('skipAuth() called');
 
-    // 为了确保导航正常工作，添加一个小延迟后尝试导航
+    // 添加小延迟确保状态更新后再尝试导航
+    // 这处理了从退出登录后进入登录页面的情况
     setTimeout(() => {
       if (navigation.canGoBack()) {
-        console.log('Can go back, calling goBack()');
         navigation.goBack();
-      } else {
-        console.log('Cannot go back, state should handle navigation');
       }
+      // 如果无法返回，状态更新会自动触发 AppNavigator 重新渲染
     }, 100);
   };
 
