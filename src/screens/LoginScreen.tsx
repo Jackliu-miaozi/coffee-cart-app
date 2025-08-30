@@ -52,7 +52,8 @@ export default function LoginScreen() {
     try {
       setIsLoading(true);
       await login(phoneNumber, verificationCode);
-      // 登录成功后会自动更新状态，主导航器会处理跳转
+      // 登录成功后导航回主界面
+      navigation.goBack();
     } catch (error) {
       Alert.alert(
         '登录失败',
