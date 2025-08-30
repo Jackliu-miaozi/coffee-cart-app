@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Order } from '../../types';
+import { LAYOUT, COLORS, SHADOWS } from '../../utils';
 
 interface OrderCardProps {
   order: Order;
@@ -110,19 +111,12 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onPress }) => {
 const styles = StyleSheet.create({
   orderCard: {
     marginBottom: 16,
-    borderRadius: 16,
+    borderRadius: LAYOUT.BORDER_RADIUS,
     overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.12,
-    shadowRadius: 12,
-    elevation: 6,
+    ...SHADOWS.MEDIUM,
   },
   orderBackground: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.CARD_BACKGROUND,
     padding: 20,
   },
   orderHeader: {
@@ -162,7 +156,7 @@ const styles = StyleSheet.create({
   cartName: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#2C3E50',
+    color: COLORS.TEXT_PRIMARY,
     marginBottom: 4,
   },
   orderMeta: {
@@ -171,7 +165,7 @@ const styles = StyleSheet.create({
   },
   orderTime: {
     fontSize: 13,
-    color: '#95A5A6',
+    color: COLORS.TEXT_LIGHT,
     marginLeft: 6,
     fontWeight: '500',
   },
@@ -192,7 +186,7 @@ const styles = StyleSheet.create({
   orderAmount: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#8B4513',
+    color: COLORS.PRIMARY,
   },
   orderItemsSection: {
     marginBottom: 16,
@@ -211,18 +205,18 @@ const styles = StyleSheet.create({
     width: 6,
     height: 6,
     borderRadius: 3,
-    backgroundColor: '#8B4513',
+    backgroundColor: COLORS.PRIMARY,
     marginRight: 10,
   },
   orderItemText: {
     fontSize: 14,
-    color: '#2C3E50',
+    color: COLORS.TEXT_PRIMARY,
     fontWeight: '500',
     flex: 1,
   },
   orderItemOptions: {
     fontSize: 12,
-    color: '#7F8C8D',
+    color: COLORS.TEXT_SECONDARY,
     marginLeft: 8,
   },
   moreItemsContainer: {
@@ -231,7 +225,7 @@ const styles = StyleSheet.create({
   },
   moreItems: {
     fontSize: 12,
-    color: '#8B4513',
+    color: COLORS.PRIMARY,
     fontWeight: '600',
     fontStyle: 'italic',
   },
@@ -247,7 +241,7 @@ const styles = StyleSheet.create({
   },
   pickupTime: {
     fontSize: 13,
-    color: '#8B4513',
+    color: COLORS.PRIMARY,
     marginLeft: 6,
     fontWeight: '500',
   },
@@ -261,7 +255,7 @@ const styles = StyleSheet.create({
   },
   viewDetailsText: {
     fontSize: 12,
-    color: '#8B4513',
+    color: COLORS.PRIMARY,
     fontWeight: '600',
     marginRight: 4,
   },

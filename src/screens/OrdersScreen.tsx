@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     backgroundColor: COLORS.BACKGROUND,
-    paddingTop: 20,
+    paddingTop: 30,
   },
 
   ordersList: {
@@ -147,5 +147,10 @@ const styles = StyleSheet.create({
   },
   emptyScroll: {
     flex: 1,
+    marginTop: -30,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    backgroundColor: COLORS.BACKGROUND,
+    paddingTop: 0,
   },
 }); 

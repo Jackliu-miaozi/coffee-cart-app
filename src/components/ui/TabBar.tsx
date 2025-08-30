@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { LAYOUT, SHADOWS } from '../../utils';
 
 interface TabItem {
   id: string;
@@ -62,18 +63,11 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     backgroundColor: 'white',
-    marginHorizontal: 20,
+    marginHorizontal: LAYOUT.CARD_MARGIN,
     borderRadius: 15,
     padding: 4,
     marginBottom: 20,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 4,
+    ...SHADOWS.SMALL,
   },
   tab: {
     flex: 1,
@@ -88,14 +82,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   activeTabBackground: {
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 3,
+    ...SHADOWS.SMALL,
   },
   tabText: {
     fontSize: 14,
