@@ -136,12 +136,10 @@ export interface AuthState {
 // Navigation types
 export type RootStackParamList = {
   Auth: undefined;
-  Home: undefined;
+  Main: undefined;
   CoffeeCartDetails: { id: string };
   ShoppingCart: undefined;
-  Orders: undefined;
   OrderDetails: { id: string };
-  Profile: undefined;
 };
 
 export type TabParamList = {

@@ -24,15 +24,13 @@ export default function AppNavigator() {
         {isAuthenticated ? (
           // 已认证用户（包括游客）看到的界面
           <>
-            <Stack.Screen name="Home" component={TabNavigator} />
+            <Stack.Screen name="Main" component={TabNavigator} />
             <Stack.Screen
               name="CoffeeCartDetails"
               component={CoffeeCartDetailsScreen}
             />
             <Stack.Screen name="ShoppingCart" component={ShoppingCartScreen} />
-            <Stack.Screen name="Orders" component={TabNavigator} />
             <Stack.Screen name="OrderDetails" component={OrderDetailsScreen} />
-            <Stack.Screen name="Profile" component={TabNavigator} />
             <Stack.Screen name="Auth" component={AuthNavigator} />
           </>
         ) : (

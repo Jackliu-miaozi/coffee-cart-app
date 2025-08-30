@@ -73,7 +73,7 @@ export default function ShoppingCartScreen() {
       return;
     }
     Alert.alert('成功', '订单已提交！');
-    navigation.navigate('Orders');
+    navigation.goBack();
   };
 
   if (cart.items.length === 0) {

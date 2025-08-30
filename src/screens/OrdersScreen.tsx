@@ -18,7 +18,7 @@ import { ordersScreenStyles as styles } from '../styles/screens';
 
 type OrdersScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'Orders'
+  'Main'
 >;
 
 export default function OrdersScreen() {

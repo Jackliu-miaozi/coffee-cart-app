@@ -1,20 +1,20 @@
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
 import {
-  View,
+  Alert,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  StatusBar,
   Text,
   TextInput,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  StatusBar,
-  KeyboardAvoidingView,
-  Platform,
-  Alert,
-  Keyboard,
+  View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { useAuthStore } from '../stores/authStore';
 import { loginScreenStyles as styles } from '../styles/screens';
 
@@ -67,6 +67,10 @@ export default function LoginScreen() {
   const handleSkipLogin = () => {
     // 跳过登录，直接进入应用
     skipAuth();
+    // 如果当前在导航栈中，则返回到上一级
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+    }
   };
 
   return (

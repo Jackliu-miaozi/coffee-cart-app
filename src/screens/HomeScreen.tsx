@@ -22,7 +22,7 @@ import { CoffeeCart } from '../types';
 import { useAuthStore } from '../stores/authStore';
 import { homeScreenStyles as styles } from '../styles/screens';
 
-type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
+type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Main'>;
 
 export default function HomeScreen() {
   const navigation = useNavigation<HomeScreenNavigationProp>();
