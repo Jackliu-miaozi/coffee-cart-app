@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "coffee-cart-app",
+    "name": "移动咖啡车",
     "slug": "coffee-cart-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -10,20 +10,37 @@
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#8B4513"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "此应用需要访问您的位置来显示附近的咖啡车",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "此应用需要访问您的位置来显示附近的咖啡车"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#8B4513"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-barcode-scanner",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "允许移动咖啡车访问您的位置来显示附近的咖啡车"
+        }
+      ]
+    ]
   }
 }
