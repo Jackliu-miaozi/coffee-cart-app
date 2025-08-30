@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   FlatList,
   ScrollView,
 } from 'react-native';
@@ -13,7 +12,8 @@ import { orders } from '../data/mockData';
 import { Order } from '../types';
 import { useAuthStore } from '../stores/authStore';
 import { AppHeader, SearchBar, EmptyState, TabBar, OrderCard } from '../components';
-import { LAYOUT, COLORS, COMMON_STYLES } from '../utils';
+import { COLORS } from '../utils';
+import { ordersScreenStyles as styles } from '../styles/screens';
 
 
 
@@ -124,33 +124,4 @@ export default function OrdersScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: COMMON_STYLES.container,
-  searchContainer: {
-    marginTop: 20,
-  },
-  contentContainer: {
-    flex: 1,
-    marginTop: -30,
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    backgroundColor: COLORS.BACKGROUND,
-    paddingTop: 30,
-  },
-
-  ordersList: {
-    flex: 1,
-  },
-  ordersListContent: {
-    padding: LAYOUT.CARD_MARGIN,
-    paddingBottom: 100,
-  },
-  emptyScroll: {
-    flex: 1,
-    marginTop: -30,
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    backgroundColor: COLORS.BACKGROUND,
-    paddingTop: 0,
-  },
-}); 
+ 

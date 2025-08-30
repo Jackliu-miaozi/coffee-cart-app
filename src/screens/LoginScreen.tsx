@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   TextInput,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  Dimensions,
   StatusBar,
   KeyboardAvoidingView,
   Platform,
@@ -18,8 +16,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useAuthStore } from '../stores/authStore';
-
-const { width, height } = Dimensions.get('window');
+import { loginScreenStyles as styles } from '../styles/screens';
 
 type LoginScreenNavigationProp = StackNavigationProp<any, 'Login'>;
 
@@ -179,174 +176,4 @@ export default function LoginScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F8F9FA',
-  },
-  backgroundDecoration: {
-    ...StyleSheet.absoluteFillObject,
-  },
-  circle1: {
-    position: 'absolute',
-    top: -100,
-    right: -100,
-    width: 200,
-    height: 200,
-    borderRadius: 100,
-    backgroundColor: '#8B4513',
-    opacity: 0.1,
-  },
-  circle2: {
-    position: 'absolute',
-    bottom: -150,
-    left: -150,
-    width: 300,
-    height: 300,
-    borderRadius: 150,
-    backgroundColor: '#D2691E',
-    opacity: 0.1,
-  },
-  safeArea: {
-    flex: 1,
-  },
-  keyboardAvoidingView: {
-    flex: 1,
-    justifyContent: 'space-between',
-  },
-  headerSection: {
-    alignItems: 'center',
-    paddingTop: 60,
-    paddingBottom: 40,
-  },
-  logoContainer: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    backgroundColor: '#FFF',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 20,
-    shadowColor: '#8B4513',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 10,
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#8B4513',
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-  },
-  formSection: {
-    paddingHorizontal: 30,
-  },
-  inputContainer: {
-    marginBottom: 30,
-  },
-  inputWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#FFF',
-    borderRadius: 12,
-    marginBottom: 16,
-    paddingHorizontal: 16,
-    height: 50,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  inputIcon: {
-    marginRight: 12,
-  },
-  input: {
-    flex: 1,
-    fontSize: 16,
-    color: '#333',
-  },
-  button: {
-    backgroundColor: '#8B4513',
-    borderRadius: 12,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#8B4513',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 6,
-  },
-  buttonDisabled: {
-    opacity: 0.6,
-  },
-  buttonText: {
-    color: '#FFF',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  divider: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 30,
-  },
-  dividerLine: {
-    flex: 1,
-    height: 1,
-    backgroundColor: '#DDD',
-  },
-  dividerText: {
-    paddingHorizontal: 20,
-    color: '#666',
-    fontSize: 14,
-  },
-  socialLoginContainer: {
-    gap: 16,
-  },
-  socialButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#FFF',
-    borderRadius: 12,
-    height: 50,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  socialButtonText: {
-    marginLeft: 12,
-    fontSize: 16,
-    color: '#333',
-    fontWeight: '500',
-  },
-  footerSection: {
-    alignItems: 'center',
-    paddingBottom: 40,
-  },
-  skipText: {
-    color: '#8B4513',
-    fontSize: 16,
-    textDecorationLine: 'underline',
-  },
-});
+
