@@ -16,6 +16,7 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
 import { userProfile } from '../data/mockData';
+import { useAuthStore } from '../stores/authStore';
 
 const { width, height } = Dimensions.get('window');
 
@@ -28,6 +29,12 @@ type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Prof
 
 export default function ProfileScreen() {
   const navigation = useNavigation<ProfileScreenNavigationProp>();
+  const { logout } = useAuthStore();
+
+  const handleLogout = () => {
+    logout();
+    // 退出登录后，zustand 会更新认证状态，AppNavigator 会自动跳转到登录页面
+  };
 
   const quickActions = [
     {
@@ -204,7 +211,7 @@ export default function ProfileScreen() {
 
         {/* Logout Section */}
         <View style={styles.logoutSection}>
-          <TouchableOpacity style={styles.logoutButton}>
+          <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
             <Ionicons name="log-out-outline" size={20} color="#E74C3C" />
             <Text style={styles.logoutText}>退出登录</Text>
           </TouchableOpacity>

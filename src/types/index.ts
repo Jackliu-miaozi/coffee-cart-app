@@ -113,8 +113,28 @@ export interface Address {
   isDefault: boolean;
 }
 
+// Auth types
+export interface User {
+  id: string;
+  phone: string;
+  name: string;
+  avatar: string;
+  token: string;
+}
+
+// Auth store types
+export interface AuthState {
+  user: User | null;
+  isAuthenticated: boolean;
+  isLoading: boolean;
+  login: (phone: string, code: string) => Promise<void>;
+  logout: () => void;
+  skipAuth: () => void;
+}
+
 // Navigation types
 export type RootStackParamList = {
+  Auth: undefined;
   Home: undefined;
   CoffeeCartDetails: { id: string };
   ShoppingCart: undefined;
@@ -127,4 +147,8 @@ export type TabParamList = {
   Home: undefined;
   Orders: undefined;
   Profile: undefined;
+};
+
+export type AuthStackParamList = {
+  Login: undefined;
 };
