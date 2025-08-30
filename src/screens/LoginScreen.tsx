@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, CommonActions } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
 import {
@@ -65,17 +65,33 @@ export default function LoginScreen() {
   };
 
   const handleSkipLogin = () => {
+    console.log('LoginScreen: handleSkipLogin called');
+
     // 跳过登录，直接进入应用
     skipAuth();
 
-    // 添加小延迟确保状态更新后再尝试导航
-    // 这处理了从退出登录后进入登录页面的情况
+    // 使用更强制的导航重置方法
     setTimeout(() => {
-      if (navigation.canGoBack()) {
+      console.log('LoginScreen: timeout callback executing');
+
+      // 尝试多种导航方法
+      const canGoBack = navigation.canGoBack();
+      console.log('LoginScreen: canGoBack =', canGoBack);
+
+      if (canGoBack) {
+        console.log('LoginScreen: calling navigation.goBack()');
         navigation.goBack();
+      } else {
+        console.log('LoginScreen: using reset to Main screen');
+        // 如果无法返回，强制重置到主屏幕
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{ name: 'Main' }],
+          })
+        );
       }
-      // 如果无法返回，状态更新会自动触发 AppNavigator 重新渲染
-    }, 100);
+    }, 300); // 再增加延迟时间
   };
 
   return (

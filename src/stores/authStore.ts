@@ -40,20 +40,35 @@ export const useAuthStore = create<AuthState>()(
       },
 
       logout: () => {
+        console.log('Logout called');
         set({
           user: null,
           isAuthenticated: false,
           isGuest: false,
           isLoading: false,
         });
+        console.log('Logout state set');
       },
 
       skipAuth: () => {
+        console.log('SkipAuth called');
+        const currentState = get();
+        console.log('Current state before skipAuth:', {
+          isAuthenticated: currentState.isAuthenticated,
+          isGuest: currentState.isGuest,
+        });
+
         set({
           user: null,
           isAuthenticated: true, // 允许进入主导航
           isGuest: true, // 标记为游客模式
           isLoading: false,
+        });
+
+        const newState = get();
+        console.log('New state after skipAuth:', {
+          isAuthenticated: newState.isAuthenticated,
+          isGuest: newState.isGuest,
         });
       },
     }),

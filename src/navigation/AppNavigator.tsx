@@ -1,18 +1,20 @@
-import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { RootStackParamList } from '../types';
-import { useAuthStore } from '../stores/authStore';
-import TabNavigator from './TabNavigator';
-import AuthNavigator from './AuthNavigator';
+import React from 'react';
 import CoffeeCartDetailsScreen from '../screens/CoffeeCartDetailsScreen';
-import ShoppingCartScreen from '../screens/ShoppingCartScreen';
 import OrderDetailsScreen from '../screens/OrderDetailsScreen';
+import ShoppingCartScreen from '../screens/ShoppingCartScreen';
+import { useAuthStore } from '../stores/authStore';
+import { RootStackParamList } from '../types';
+import AuthNavigator from './AuthNavigator';
+import TabNavigator from './TabNavigator';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
 export default function AppNavigator() {
-  const { isAuthenticated } = useAuthStore();
+  const { isAuthenticated, isGuest } = useAuthStore();
+
+  console.log('AppNavigator render:', { isAuthenticated, isGuest });
 
   return (
     <NavigationContainer>
